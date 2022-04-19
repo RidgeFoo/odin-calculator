@@ -1,0 +1,69 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+  color: lightgrey;
+  background-color: rgb(213, 218, 221);
+}
+
+.container {
+  margin-top: 36px;
+  width: 400px;
+  height: 450px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgb(69, 69, 73);
+  background-color: rgb(69, 69, 73);
+}
+
+.display {
+  height: 20%;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0px 18px 0px 18px;
+  background-color: rgb(69, 69, 73);
+}
+
+.button-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  height: 80%;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  gap: 1px;
+}
+
+.button {
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(134, 132, 132);
+  transition: 0.2s;
+}
+
+.button:hover {
+  filter: brightness(60%);
+}
+
+.button-large {
+  flex: 2;
+}
+
+.button-xtra-large {
+  flex: 3;
+}
+
+.operator {
+  background-color: rgb(255, 159, 80);
+}
