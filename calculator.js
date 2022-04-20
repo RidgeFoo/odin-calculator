@@ -60,6 +60,7 @@ document.querySelector("#clear").addEventListener("click", () => {
 // If a number is clicked add that to the relevant variable
 document.querySelectorAll(".number").forEach((btn) =>
   btn.addEventListener("click", () => {
+    if (result === errorMessage) result = null;
     const number = btn.textContent;
     if (operatorFunction) {
       b ? (b += number) : (b = number);
@@ -73,6 +74,7 @@ document.querySelectorAll(".number").forEach((btn) =>
 // Operator calls need to be logged accordingly
 document.querySelectorAll(".operator").forEach((operator) =>
   operator.addEventListener("click", () => {
+    if (result === errorMessage) return;
     operatorFunction = operatorFunctions[operator.id];
     /* If they are calling the operator function after getting a result then set
     the result to `a` */
@@ -85,6 +87,10 @@ document.querySelectorAll(".operator").forEach((operator) =>
 
 // Equals call should display result on the display
 document.querySelector("#equals").addEventListener("click", () => {
+  // We need both elements otherwise do nothing!
+  if (!b) {
+    return;
+  }
   result = operate(a, b, operatorFunction);
   a = null;
   b = null;
