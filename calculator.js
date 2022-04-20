@@ -84,7 +84,8 @@ document.querySelectorAll(".number").forEach((btn) =>
 );
 
 // Operator calls need to be logged accordingly
-document.querySelectorAll(".operator").forEach((operator) =>
+const operatorButtons = document.querySelectorAll(".operator");
+operatorButtons.forEach((operator) =>
   operator.addEventListener("click", () => {
     if (result === errorMessage) return;
     operatorFunction = operatorFunctions[operator.id];
@@ -94,8 +95,22 @@ document.querySelectorAll(".operator").forEach((operator) =>
       a = result;
     }
     updateDisplay();
+    removeOperatorHighlighting();
+    highlightOperator(operator.id);
   })
 );
+
+function highlightOperator(operatorName) {
+  const className = "selected";
+  document.querySelector(`#${operatorName}`).classList.add(className);
+}
+
+function removeOperatorHighlighting(operatorName) {
+  const className = "selected";
+  document
+    .querySelectorAll(".operator")
+    .forEach((op) => op.classList.remove(className));
+}
 
 // Equals call should display result on the display
 document.querySelector("#equals").addEventListener("click", () => {
@@ -108,6 +123,7 @@ document.querySelector("#equals").addEventListener("click", () => {
   b = null;
   operatorFunction = null;
   updateDisplay();
+  removeOperatorHighlighting();
 });
 
 function checkMaxLength(numberToCheck) {

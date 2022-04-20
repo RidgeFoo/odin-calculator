@@ -67,3 +67,7 @@ body {
 .highlight {
   background-color: rgb(255, 159, 80);
 }
+
+.selected {
+  filter:brightness(80%);
+}
