@@ -17,7 +17,7 @@ body {
   background-color: rgb(69, 69, 73);
 }
 
-.display {
+#display {
   height: 20%;
   font-size: 36px;
   display: flex;
@@ -64,6 +64,6 @@ body {
   flex: 3;
 }
 
-.operator {
+.highlight {
   background-color: rgb(255, 159, 80);
 }
