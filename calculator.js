@@ -8,7 +8,7 @@ const operatorFunctions = {
 const errorMessage = "Divide by zero";
 
 function operate(a, b, func) {
-  return func(parseInt(a), parseInt(b));
+  return func(parseFloat(a), parseFloat(b));
 }
 
 function add(a, b) {
@@ -61,11 +61,14 @@ document.querySelector("#clear").addEventListener("click", () => {
 document.querySelectorAll(".number").forEach((btn) =>
   btn.addEventListener("click", () => {
     if (result === errorMessage) result = null;
-    const number = btn.textContent;
+    let input = btn.textContent;
     if (operatorFunction) {
-      b ? (b += number) : (b = number);
+      // This point handling is quite messy really
+      if (btn.id === "point" && b % 1 != 0) input = "";
+      b ? (b += input) : (b = input);
     } else {
-      a ? (a += number) : (a = number);
+      if (btn.id === "point" && a % 1 != 0) input = "";
+      a ? (a += input) : (a = input);
     }
     updateDisplay();
   })
