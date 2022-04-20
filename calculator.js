@@ -4,11 +4,10 @@ const operatorFunctions = {
   multiply: multiply,
   divide: divide,
 };
-
 const errorMessage = "Divide by zero";
 
 function operate(a, b, func) {
-  return func(parseFloat(a), parseFloat(b));
+  return func(parseFloat(a), parseFloat(b)).toString();
 }
 
 function add(a, b) {
@@ -64,11 +63,21 @@ document.querySelectorAll(".number").forEach((btn) =>
     let input = btn.textContent;
     if (operatorFunction) {
       // This point handling is quite messy really
-      if (btn.id === "point" && b % 1 != 0) input = "";
-      b ? (b += input) : (b = input);
+      if (b) {
+        if (getSingleDecimalPointCheck(btn.id, b)) return;
+        if (checkMaxLength(b)) return;
+        b += input;
+      } else {
+        b = input;
+      }
     } else {
-      if (btn.id === "point" && a % 1 != 0) input = "";
-      a ? (a += input) : (a = input);
+      if (a) {
+        if (getSingleDecimalPointCheck(btn.id, a)) return;
+        if (checkMaxLength(a)) return;
+        a += input;
+      } else {
+        a = input;
+      }
     }
     updateDisplay();
   })
@@ -100,3 +109,12 @@ document.querySelector("#equals").addEventListener("click", () => {
   operatorFunction = null;
   updateDisplay();
 });
+
+function checkMaxLength(numberToCheck) {
+  const maxNumberLength = 15;
+  return numberToCheck.length === maxNumberLength;
+}
+
+function getSingleDecimalPointCheck(buttonId, numberToCheck) {
+  return buttonId === "point" && numberToCheck.includes(".");
+}
